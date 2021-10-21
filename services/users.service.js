@@ -25,3 +25,20 @@ exports.getRegister = (data, callback) => {
       }
     );
   };
+
+  exports.login = (data, callback) => {
+    db.query(
+      `SELECT * FROM users WHERE emailId = ? AND password = ?`,
+      [data.emailId, data.password],
+      (error, results, fields) => {
+        if (error) {
+          return callback(error);
+        }
+        if (results.length > 0) {
+          return callback(null, results);
+        } else {
+          return callback("Invalid credentials");
+        }
+      }
+    );
+  };

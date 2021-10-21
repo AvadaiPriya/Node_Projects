@@ -6,10 +6,12 @@ const app = express();
 const bodyParser = require("body-parser");
 
 const usersRoutes = require("./routes/users.route");
+const postsRoutes = require("./routes/posts.route");
 
 app.use(bodyParser.json());
 
 app.use("/users", usersRoutes);
+app.use("/posts", postsRoutes);
 
 /** Swagger Initialization - START */
 const swaggerOption = {
