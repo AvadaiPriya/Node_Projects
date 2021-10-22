@@ -14,31 +14,31 @@ exports.postRegister = (data, callback) => {
 };
 
 exports.getRegister = (data, callback) => {
-    db.query(
-      `SELECT * from users`,
-      (error, results, fields) => {
-        if (error) {
-          return callback(error);
-        }
-        console.log(results)
-        return callback(null, results);
+  db.query(
+    `SELECT * from users`,
+    (error, results, fields) => {
+      if (error) {
+        return callback(error);
       }
-    );
-  };
+      console.log(results)
+      return callback(null, results);
+    }
+  );
+};
 
-  exports.login = (data, callback) => {
-    db.query(
-      `SELECT * FROM users WHERE emailId = ? AND password = ?`,
-      [data.emailId, data.password],
-      (error, results, fields) => {
-        if (error) {
-          return callback(error);
-        }
-        if (results.length > 0) {
-          return callback(null, results);
-        } else {
-          return callback("Invalid credentials");
-        }
+exports.login = (data, callback) => {
+  db.query(
+    `SELECT * FROM users WHERE emailId = ? AND password = ?`,
+    [data.emailId, data.password],
+    (error, results, fields) => {
+      if (error) {
+        return callback(error);
       }
-    );
-  };
+      if (results.length > 0) {
+        return callback(null, results);
+      } else {
+        return callback("Invalid credentials");
+      }
+    }
+  );
+};
